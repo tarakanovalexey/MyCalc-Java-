@@ -1,156 +1,139 @@
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.awt.LayoutManager;
-import java.awt.Toolkit;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
-public class Main extends JFrame implements ActionListener {
-    public JPanel panel;
-    public double fromtext;
-    public double fromtext2;
+public class Main extends JFrame implements ActionListener // Создаем класс с расширением JFrame для формы
+{
+    public JPanel panel; // Создаем панель
+    public double fromtext, fromtext2;
     public int oper;
     public int checker = 0;
     JTextArea text = new JTextArea();
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    int scrH;
-    int scrW;
-    int W;
-    int H;
 
-    public void initpanel() {
-        this.panel = new JPanel();
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); // Выясняем размеры дисплея
+    int scrH = screenSize.height; // Высота дисплея
+    int scrW = screenSize.width; // Ширина дисплея
+    int W = 300; // Ширина панели
+    int H = 400; // Высота панели
+
+        public void initpanel ()
+    {
+        panel = new JPanel(); // Создаем панель
         JPanel panel = new JPanel(new GridBagLayout());
-        panel.setLayout((LayoutManager)null);
-        this.text.setEditable(false);
-        panel.add(this.text);
-        this.text.setBounds(0, 20, 300, 130);
-        this.text.setLineWrap(true);
-        JButton b1 = new JButton("=");
+        panel.setLayout(null);
+
+        text.setEditable(false);
+        panel.add(text);
+        text.setBounds(0, 20, 300, 130);
+        text.setLineWrap(true);
+
+        JButton b1 = new JButton("="); // Создаем кнопку
         JButton b2 = new JButton("C");
+
         JButton numdot = new JButton(".");
         JButton num0 = new JButton("0");
         JButton num1 = new JButton();
         num1.setActionCommand("1");
-
         try {
-            Image img1 = ImageIO.read(this.getClass().getResource("resources/one.png"));
-            Image newimg1 = img1.getScaledInstance(50, 50, 4);
+            Image img1 = ImageIO.read(getClass().getResource("resources/one.png"));
+            Image newimg1 = img1.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
             num1.setIcon(new ImageIcon(newimg1));
-        } catch (Exception var27) {
-            System.out.println(var27);
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
-
-        JButton num2 = new JButton("2");
-        num1.setActionCommand("2");
-
+        JButton num2 = new JButton();
+        num2.setActionCommand("2");
         try {
-            Image img1 = ImageIO.read(this.getClass().getResource("resources/two.png"));
-            Image newimg1 = img1.getScaledInstance(50, 50, 4);
+            Image img1 = ImageIO.read(getClass().getResource("resources/two.png"));
+            Image newimg1 = img1.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
             num2.setIcon(new ImageIcon(newimg1));
-        } catch (Exception var26) {
-            System.out.println(var26);
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
-
-        JButton num3 = new JButton("3");
-        num1.setActionCommand("3");
-
+        JButton num3 = new JButton();
+        num3.setActionCommand("3");
         try {
-            Image img1 = ImageIO.read(this.getClass().getResource("resources/three.png"));
-            Image newimg1 = img1.getScaledInstance(50, 50, 4);
+            Image img1 = ImageIO.read(getClass().getResource("resources/three.png"));
+            Image newimg1 = img1.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
             num3.setIcon(new ImageIcon(newimg1));
-        } catch (Exception var25) {
-            System.out.println(var25);
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
-
-        JButton num4 = new JButton("4");
-        num1.setActionCommand("4");
-
+        JButton num4 = new JButton();
+        num4.setActionCommand("4");
         try {
-            Image img1 = ImageIO.read(this.getClass().getResource("resources/four.png"));
-            Image newimg1 = img1.getScaledInstance(50, 50, 4);
+            Image img1 = ImageIO.read(getClass().getResource("resources/four.png"));
+            Image newimg1 = img1.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
             num4.setIcon(new ImageIcon(newimg1));
-        } catch (Exception var24) {
-            System.out.println(var24);
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
-
-        JButton num5 = new JButton("5");
-        num1.setActionCommand("5");
-
+        JButton num5 = new JButton();
+        num5.setActionCommand("5");
         try {
-            Image img1 = ImageIO.read(this.getClass().getResource("resources/five.png"));
-            Image newimg1 = img1.getScaledInstance(50, 50, 4);
+            Image img1 = ImageIO.read(getClass().getResource("resources/five.png"));
+            Image newimg1 = img1.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
             num5.setIcon(new ImageIcon(newimg1));
-        } catch (Exception var23) {
-            System.out.println(var23);
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
-
-        JButton num6 = new JButton("6");
-        num1.setActionCommand("6");
-
+        JButton num6 = new JButton();
+        num6.setActionCommand("6");
         try {
-            Image img1 = ImageIO.read(this.getClass().getResource("resources/six.png"));
-            Image newimg1 = img1.getScaledInstance(50, 50, 4);
+            Image img1 = ImageIO.read(getClass().getResource("resources/six.png"));
+            Image newimg1 = img1.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
             num6.setIcon(new ImageIcon(newimg1));
-        } catch (Exception var22) {
-            System.out.println(var22);
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
-
-        JButton num7 = new JButton("7");
-        num1.setActionCommand("7");
-
+        JButton num7 = new JButton();
+        num7.setActionCommand("7");
         try {
-            Image img1 = ImageIO.read(this.getClass().getResource("resources/seven.png"));
-            Image newimg1 = img1.getScaledInstance(50, 50, 4);
+            Image img1 = ImageIO.read(getClass().getResource("resources/seven.png"));
+            Image newimg1 = img1.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
             num7.setIcon(new ImageIcon(newimg1));
-        } catch (Exception var21) {
-            System.out.println(var21);
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
-
-        JButton num8 = new JButton("8");
-        num1.setActionCommand("8");
-
+        JButton num8 = new JButton();
+        num8.setActionCommand("8");
         try {
-            Image img1 = ImageIO.read(this.getClass().getResource("resources/eight.png"));
-            Image newimg1 = img1.getScaledInstance(50, 50, 4);
+            Image img1 = ImageIO.read(getClass().getResource("resources/eight.png"));
+            Image newimg1 = img1.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
             num8.setIcon(new ImageIcon(newimg1));
-        } catch (Exception var20) {
-            System.out.println(var20);
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
-
-        JButton num9 = new JButton("9");
-        num1.setActionCommand("9");
-
+        JButton num9 = new JButton();
+        num9.setActionCommand("9");
         try {
-            Image img1 = ImageIO.read(this.getClass().getResource("resources/nine.png"));
-            Image newimg1 = img1.getScaledInstance(50, 50, 4);
+            Image img1 = ImageIO.read(getClass().getResource("resources/nine.png"));
+            Image newimg1 = img1.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
             num9.setIcon(new ImageIcon(newimg1));
-        } catch (Exception var19) {
-            System.out.println(var19);
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
 
         JButton numplus = new JButton("+");
         JButton numminus = new JButton("-");
         JButton nummult = new JButton("*");
         JButton numdivide = new JButton("/");
-        panel.setPreferredSize(new Dimension(this.W, this.H));
-        panel.setBackground(Color.cyan);
-        panel.add(b1);
+        JButton numstepen = new JButton("^");
+        JButton numprocent = new JButton("%");
+
+        panel.setPreferredSize(new Dimension(W, H)); // Задаем ширину и высоту
+        panel.setBackground(Color.cyan); // Задаем цвет background
+
+        panel.add(b1); // Добавляем кнопку на панель
         b1.setBounds(200, 350, 100, 50);
         b1.setBackground(Color.white);
         b1.addActionListener(this);
         panel.add(b2);
         b2.setBounds(200, 150, 50, 50);
         b2.addActionListener(this);
+
         panel.add(numdot);
         numdot.setBounds(150, 350, 50, 50);
         numdot.addActionListener(this);
@@ -184,347 +167,352 @@ public class Main extends JFrame implements ActionListener {
         panel.add(num9);
         num9.setBounds(150, 200, 50, 50);
         num9.addActionListener(this);
+
         panel.add(numplus);
-        numplus.setBounds(200, 250, 50, 50);
+        numplus.setBounds(200, 300, 50, 50);
         numplus.addActionListener(this);
         panel.add(numminus);
-        numminus.setBounds(250, 250, 50, 50);
+        numminus.setBounds(250, 300, 50, 50);
         numminus.addActionListener(this);
         panel.add(nummult);
-        nummult.setBounds(200, 300, 50, 50);
+        nummult.setBounds(200, 250, 50, 50);
         nummult.addActionListener(this);
         panel.add(numdivide);
-        numdivide.setBounds(250, 300, 50, 50);
+        numdivide.setBounds(250, 250, 50, 50);
         numdivide.addActionListener(this);
-        this.add(panel);
-    }
+        panel.add(numstepen);
+        numstepen.setBounds(200, 200, 50, 50);
+        numstepen.addActionListener(this);
+        panel.add(numprocent);
+        numprocent.setBounds(250, 200, 50, 50);
+        numprocent.addActionListener(this);
 
-    public void actionPerformed(ActionEvent event) {
+        add (panel); // Отображаем
+    }
+   public void actionPerformed(ActionEvent event)
+   {
         String source = event.getActionCommand();
-        byte var4 = -1;
-        switch(source.hashCode()) {
-        case 42:
-            if (source.equals("*")) {
-                var4 = 14;
-            }
-            break;
-        case 43:
-            if (source.equals("+")) {
-                var4 = 12;
-            }
-        case 44:
-        case 58:
-        case 59:
-        case 60:
-        case 62:
-        case 63:
-        case 64:
-        case 65:
-        case 66:
-        default:
-            break;
-        case 45:
-            if (source.equals("-")) {
-                var4 = 13;
-            }
-            break;
-        case 46:
-            if (source.equals(".")) {
-                var4 = 16;
-            }
-            break;
-        case 47:
-            if (source.equals("/")) {
-                var4 = 15;
-            }
-            break;
-        case 48:
-            if (source.equals("0")) {
-                var4 = 1;
-            }
-            break;
-        case 49:
-            if (source.equals("1")) {
-                var4 = 2;
-            }
-            break;
-        case 50:
-            if (source.equals("2")) {
-                var4 = 3;
-            }
-            break;
-        case 51:
-            if (source.equals("3")) {
-                var4 = 4;
-            }
-            break;
-        case 52:
-            if (source.equals("4")) {
-                var4 = 5;
-            }
-            break;
-        case 53:
-            if (source.equals("5")) {
-                var4 = 6;
-            }
-            break;
-        case 54:
-            if (source.equals("6")) {
-                var4 = 7;
-            }
-            break;
-        case 55:
-            if (source.equals("7")) {
-                var4 = 8;
-            }
-            break;
-        case 56:
-            if (source.equals("8")) {
-                var4 = 9;
-            }
-            break;
-        case 57:
-            if (source.equals("9")) {
-                var4 = 10;
-            }
-            break;
-        case 61:
-            if (source.equals("=")) {
-                var4 = 11;
-            }
-            break;
-        case 67:
-            if (source.equals("C")) {
-                var4 = 17;
-            }
+        switch (source)
+        {
+            default: System.out.println("clicked but no command");
+                break;
+            case "0":
+                switch(checker)
+                {
+                    case 0:
+                        text.setText(text.getText()+"0");
+                        fromtext2 = Double.valueOf(text.getText());
+                    break;
+                    case 1:
+                        text.setText("");
+                        text.setText(text.getText()+"0");
+                        fromtext2 = Double.valueOf(text.getText());
+                        checker = 0;
+                    break;
+                }
+                break;
+            case "1":
+                switch(checker)
+                {
+                    case 0:
+                        text.setText(text.getText()+"1");
+                        fromtext2 = Double.valueOf(text.getText());
+                        break;
+                    case 1:
+                        text.setText("");
+                        text.setText(text.getText()+"1");
+                        fromtext2 = Double.valueOf(text.getText());
+                        checker = 0;
+                        break;
+                }
+                break;
+            case "2":
+                switch(checker)
+                {
+                    case 0:
+                        text.setText(text.getText()+"2");
+                        fromtext2 = Double.valueOf(text.getText());
+                        break;
+                    case 1:
+                        text.setText("");
+                        text.setText(text.getText()+"2");
+                        fromtext2 = Double.valueOf(text.getText());
+                        checker = 0;
+                        break;
+                }
+                break;
+            case "3":
+                switch(checker)
+                {
+                    case 0:
+                        text.setText(text.getText()+"3");
+                        fromtext2 = Double.valueOf(text.getText());
+                        break;
+                    case 1:
+                        text.setText("");
+                        text.setText(text.getText()+"3");
+                        fromtext2 = Double.valueOf(text.getText());
+                        checker = 0;
+                        break;
+                }
+                break;
+            case "4":
+                switch(checker)
+                {
+                    case 0:
+                        text.setText(text.getText()+"4");
+                        fromtext2 = Double.valueOf(text.getText());
+                        break;
+                    case 1:
+                        text.setText("");
+                        text.setText(text.getText()+"4");
+                        fromtext2 = Double.valueOf(text.getText());
+                        checker = 0;
+                        break;
+                }
+                break;
+            case "5":
+                switch(checker)
+                {
+                    case 0:
+                        text.setText(text.getText()+"5");
+                        fromtext2 = Double.valueOf(text.getText());
+                        break;
+                    case 1:
+                        text.setText("");
+                        text.setText(text.getText()+"5");
+                        fromtext2 = Double.valueOf(text.getText());
+                        checker = 0;
+                        break;
+                }
+                break;
+            case "6":
+                switch(checker)
+                {
+                    case 0:
+                        text.setText(text.getText()+"6");
+                        fromtext2 = Double.valueOf(text.getText());
+                        break;
+                    case 1:
+                        text.setText("");
+                        text.setText(text.getText()+"6");
+                        fromtext2 = Double.valueOf(text.getText());
+                        checker = 0;
+                        break;
+                }
+                break;
+            case "7":
+                switch(checker)
+                {
+                    case 0:
+                        text.setText(text.getText()+"7");
+                        fromtext2 = Double.valueOf(text.getText());
+                        break;
+                    case 1:
+                        text.setText("");
+                        text.setText(text.getText()+"7");
+                        fromtext2 = Double.valueOf(text.getText());
+                        checker = 0;
+                        break;
+                }
+                break;
+            case "8":
+                switch(checker)
+                {
+                    case 0:
+                        text.setText(text.getText()+"8");
+                        fromtext2 = Double.valueOf(text.getText());
+                        break;
+                    case 1:
+                        text.setText("");
+                        text.setText(text.getText()+"8");
+                        fromtext2 = Double.valueOf(text.getText());
+                        checker = 0;
+                        break;
+                }
+                break;
+            case "9":
+                switch(checker)
+                {
+                    case 0:
+                        text.setText(text.getText()+"9");
+                        fromtext2 = Double.valueOf(text.getText());
+                        break;
+                    case 1:
+                        text.setText("");
+                        text.setText(text.getText()+"9");
+                        fromtext2 = Double.valueOf(text.getText());
+                        checker = 0;
+                        break;
+                }
+                break;
+            case "=": System.out.println("=");
+                switch (oper)
+                {
+                    case 1: fromtext=fromtext+fromtext2;
+                        break;
+                    case 2: fromtext=fromtext-fromtext2;
+                        break;
+                    case 3: fromtext=fromtext*fromtext2;
+                        break;
+                    case 4: fromtext=fromtext/fromtext2;
+                        break;
+                    case 5:
+
+                        break;
+                    case 6: fromtext=Math.pow(fromtext, fromtext2);
+                        break;
+                }
+                text.setText(String.valueOf(fromtext));
+                break;
+            case "+":
+                System.out.println("+");
+                if (!text.getText().trim().isBlank())
+                {
+                    fromtext = Double.valueOf(text.getText());
+                    checker = 1;
+                    oper = 1;
+                    break;
+                }
+                break;
+            case "-":
+                System.out.println("-");
+                if (!text.getText().trim().isBlank())
+                {
+                    fromtext = Double.valueOf(text.getText());
+                    checker = 1;
+                    oper = 2;
+                    break;
+                }
+                break;
+            case "*":
+                System.out.println("*");
+                if (!text.getText().trim().isBlank())
+                {
+                    fromtext = Double.valueOf(text.getText());
+                    checker = 1;
+                    oper = 3;
+                    break;
+                }
+                break;
+            case "/":
+                System.out.println("/");
+                if (!text.getText().trim().isBlank())
+                {
+                    fromtext = Double.valueOf(text.getText());
+                    checker = 1;
+                    oper = 4;
+                    break;
+                }
+                break;
+            case "%":
+                System.out.println("%");
+                if (!text.getText().trim().isBlank())
+                {
+                    switch (oper)
+                    {
+                        case 1:fromtext=fromtext+(fromtext/100*fromtext2);
+
+                            break;
+                        case 2:fromtext=fromtext-(fromtext/100*fromtext2);
+
+                            break;
+                        case 3:fromtext=fromtext*(fromtext/100*fromtext2);
+
+                            break;
+                        case 4:fromtext=fromtext/(fromtext/100*fromtext2);
+
+                            break;
+                        case 6:
+                            fromtext=0;
+                            System.out.println("Case 6 for %");
+                            break;
+                    }
+                    text.setText(String.valueOf(fromtext));
+                    checker = 1;
+                    break;
+                }
+                break;
+            case "^":
+                System.out.println("^");
+                if (!text.getText().trim().isBlank())
+                {
+                    fromtext = Double.valueOf(text.getText());
+                    checker = 1;
+                    oper = 6;
+                    break;
+                }
+                break;
+            case ".":
+                text.setText(text.getText()+".");
+                break;
+            case "C":
+                System.out.println("C");
+                text.setText("");
+                fromtext = 0;
+                fromtext2 = 0;
+                checker = 0;
+                break;
+
         }
-
-        switch(var4) {
-        case 1:
-            switch(this.checker) {
-            case 0:
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                return;
-            case 1:
-                this.text.setText("");
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                this.checker = 0;
-                return;
-            default:
-                return;
-            }
-        case 2:
-            switch(this.checker) {
-            case 0:
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                return;
-            case 1:
-                this.text.setText("");
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                this.checker = 0;
-                return;
-            default:
-                return;
-            }
-        case 3:
-            switch(this.checker) {
-            case 0:
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                return;
-            case 1:
-                this.text.setText("");
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                this.checker = 0;
-                return;
-            default:
-                return;
-            }
-        case 4:
-            switch(this.checker) {
-            case 0:
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                return;
-            case 1:
-                this.text.setText("");
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                this.checker = 0;
-                return;
-            default:
-                return;
-            }
-        case 5:
-            switch(this.checker) {
-            case 0:
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                return;
-            case 1:
-                this.text.setText("");
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                this.checker = 0;
-                return;
-            default:
-                return;
-            }
-        case 6:
-            switch(this.checker) {
-            case 0:
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                return;
-            case 1:
-                this.text.setText("");
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                this.checker = 0;
-                return;
-            default:
-                return;
-            }
-        case 7:
-            switch(this.checker) {
-            case 0:
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                return;
-            case 1:
-                this.text.setText("");
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                this.checker = 0;
-                return;
-            default:
-                return;
-            }
-        case 8:
-            switch(this.checker) {
-            case 0:
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                return;
-            case 1:
-                this.text.setText("");
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                this.checker = 0;
-                return;
-            default:
-                return;
-            }
-        case 9:
-            switch(this.checker) {
-            case 0:
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                return;
-            case 1:
-                this.text.setText("");
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                this.checker = 0;
-                return;
-            default:
-                return;
-            }
-        case 10:
-            switch(this.checker) {
-            case 0:
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                return;
-            case 1:
-                this.text.setText("");
-                this.text.setText(this.text.getText());
-                this.fromtext2 = Double.valueOf(this.text.getText());
-                this.checker = 0;
-                return;
-            default:
-                return;
-            }
-        case 11:
-            System.out.println("=");
-            switch(this.oper) {
-            case 1:
-                this.fromtext += this.fromtext2;
-                break;
-            case 2:
-                this.fromtext -= this.fromtext2;
-                break;
-            case 3:
-                this.fromtext *= this.fromtext2;
-                break;
-            case 4:
-                this.fromtext /= this.fromtext2;
-            }
-
-            this.text.setText(String.valueOf(this.fromtext));
-            break;
-        case 12:
-            System.out.println("+");
-            this.fromtext = Double.valueOf(this.text.getText());
-            this.checker = 1;
-            this.oper = 1;
-            break;
-        case 13:
-            System.out.println("-");
-            this.fromtext = Double.valueOf(this.text.getText());
-            this.checker = 1;
-            this.oper = 2;
-            break;
-        case 14:
-            System.out.println("*");
-            this.fromtext = Double.valueOf(this.text.getText());
-            this.checker = 1;
-            this.oper = 3;
-            break;
-        case 15:
-            System.out.println("/");
-            this.fromtext = Double.valueOf(this.text.getText());
-            this.checker = 1;
-            this.oper = 4;
-            break;
-        case 16:
-            this.text.setText(this.text.getText());
-            break;
-        case 17:
-            System.out.println("C");
-            this.text.setText("");
-            break;
-        default:
-            System.out.println("clicked but no command");
-        }
-
     }
-
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         new Main();
     }
-
-    public Main() {
-        this.scrH = this.screenSize.height;
-        this.scrW = this.screenSize.width;
-        this.W = 300;
-        this.H = 400;
-        this.initpanel();
-        this.initFrame();
+    public Main() // Инициируем панель и фрейм
+    {
+        initpanel();
+        initFrame();
     }
 
-    private void initFrame() {
-        this.setDefaultCloseOperation(3);
-        this.setTitle("Калькулятор");
-        this.setLocationRelativeTo((Component)null);
-        this.setResizable(true);
-        this.setVisible(true);
-        this.setLocation(this.scrW / 2 - this.W / 2, this.scrH / 2 - this.H / 2);
-        this.pack();
+    public void initFrame()
+    {
+        Font font = new Font("Verdana", Font.PLAIN, 11);
+        JMenuItem openItem = new JMenuItem("Открыть");
+        openItem.setFont(font);
+        JMenu fileMenu = new JMenu("Меню");
+        fileMenu.setFont(font);
+        JMenu NMenu = new JMenu("New");
+        fileMenu.add(NMenu);
+        fileMenu.add(openItem);
+        JMenuItem txtFileItem = new JMenuItem("Text file");
+        NMenu.add(txtFileItem);
+        JMenuItem txtFileItem1 = new JMenuItem("Text file1");
+        NMenu.add(txtFileItem1);
+        txtFileItem.setFont(font);
+        NMenu.setFont(font);
+        NMenu.add(txtFileItem);
+        JMenuBar menuBar = new JMenuBar();
+        JMenuItem closeItem = new JMenuItem("Закрыть");
+        closeItem.setFont(font);
+        fileMenu.add(closeItem);
+
+        JMenuItem closeAllItem = new JMenuItem("Закрыть все");
+        closeAllItem.setFont(font);
+        fileMenu.add(closeAllItem);
+
+        fileMenu.addSeparator(); // разделитель
+
+        JMenuItem exitItem = new JMenuItem("Выход");
+        exitItem.setFont(font);
+        fileMenu.add(exitItem);
+
+        exitItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+        menuBar.add(fileMenu);
+
+        setJMenuBar(menuBar);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Калькулятор");
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setVisible(true);
+        setLocation((scrW / 2)-(W/2), (scrH / 2)-(H/2));
+        pack();
     }
 }
